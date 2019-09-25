@@ -74,7 +74,7 @@ const Signup = () => {
         />
       </div>
       <br /><br />
-      <button onClick={clickSubmit} className="btn btn-add text-uppercase">submit</button>
+      <button onClick={clickSubmit}>submit</button>
     </form>
   );
   
