@@ -57,49 +57,70 @@ export const getAllTasks = (userId, token) => {
   .catch(err => console.log(err));
 };
 
-// export const getFavoritesList = (userId, token) => {
-//   return fetch(`${API}/favorites/by/user/${userId}`, {
-//     method: 'GET',
-//     headers: {
-//       Accept: 'application/json',
-//       'Content-Type': 'application/json',
-//       Authorization: `Bearer ${token}`
-//     },
-//   })
-//   .then(response => {
-//     return response.json();
-//   })
-//   .catch(err => console.log(err));
-// };
+export const createTask = (userId, token, task) => {
+  return fetch(`${API}/task/create/${userId}`, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      Authorization: `Bearer ${token}`
+    },
+    body: task
+  })
+    .then(response => {
+      return response.json();
+    })
+    .catch(err => {
+      console.log(err)
+    });
+};
 
-// export const addFavorite = (userId, token, product) => {
-//   return fetch(`${API}/favorites/add/${userId}`, {
-//     method: "POST",
-//     headers: {
-//       Accept: "application/json",
-//       "Content-Type": "application/json",
-//       Authorization: `Bearer ${token}`
-//     },
-//     body: JSON.stringify(product)
-//   })
-//   .then(response => {
-//     return response.json();
-//   })
-//   .catch(err => console.log(err));
-// };
+export const getTasks = () => {
+  return fetch(`${API}/tasks`, {
+    method: 'GET'
+  })
+  .then(response => {
+    return response.json();
+  })
+  .catch(err => console.log(err));
+};
 
-// export const removeFavorite = (product, token, userId) => {
-//   return fetch(`${API}/favorites/remove/${userId}`, {
-//     method: "PUT",
-//     headers: {
-//       Accept: "application/json",
-//       "Content-Type": "application/json",
-//       Authorization: `Bearer ${token}`
-//     },
-//     body: JSON.stringify(product)
-//   })
-//     .then(response => {
-//         return response.json();
-//     })
-//     .catch(err => console.log(err));
-// };
+
+export const deleteTasks = (taskId, userId, token) => {
+  return fetch(`${API}/task/${taskId}/${userId}`, {
+    method: "DELETE",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`
+    },
+  })
+    .then(response => {
+        return response.json();
+    })
+    .catch(err => console.log(err));
+};
+
+export const getTask = (taskId) => {
+  return fetch(`${API}/task/${taskId}`, {
+    method: 'GET'
+  })
+  .then(response => {
+    return response.json();
+  })
+  .catch(err => console.log(err));
+};
+
+export const updateTask = (taskId, userId, token, task) => {
+  return fetch(`${API}/task/${taskId}/${userId}`, {
+    method: "PUT",
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${token}`
+    },
+    body: task
+  })
+    .then(response => {
+        return response.json();
+    })
+    .catch(err => console.log(err));
+};
